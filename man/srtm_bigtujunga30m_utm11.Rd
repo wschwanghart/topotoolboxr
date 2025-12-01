@@ -20,8 +20,10 @@ Topography Mission (SRTM) elevation data TIFF file for the Big Tujunga
 catchment in California, located in `inst/extdata/`.
 }
 \examples{
+\dontrun{
 data(srtm_bigtujunga30m_utm11)
 library(topotoolboxr)
 GRIDobj(srtm_bigtujunga30m_utm11)
+}
 }
 \keyword{datasets}

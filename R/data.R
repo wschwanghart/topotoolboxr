@@ -11,7 +11,9 @@
 #' }
 #' @usage data(srtm_bigtujunga30m_utm11)
 #' @examples
+#' \dontrun{
 #' data(srtm_bigtujunga30m_utm11)
 #' library(topotoolboxr)
 #' GRIDobj(srtm_bigtujunga30m_utm11)
+#' }
 "srtm_bigtujunga30m_utm11"
