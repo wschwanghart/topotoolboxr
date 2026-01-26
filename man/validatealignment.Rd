@@ -2,38 +2,31 @@
 % Please edit documentation in R/validatealignment.R
 \name{validatealignment}
 \alias{validatealignment}
-\title{Check whether two objects are aligned}
+\title{Check whether multiple objects are aligned}
 \usage{
-validatealignment(x1, x2)
+validatealignment(...)
 }
 \arguments{
-\item{x1}{matrix or array or GRIDobj or FLOWobj or STREAMobj
+\item{...}{matrix | array | GRIDobj | FLOWobj | STREAMobj
 
-The first object to check}
-
-\item{x2}{matrix or array or GRIDobj or FLOWobj or STREAMobj
-
-The second object to check}
+Objects to test for alignment}
 }
 \value{
 logical
 
-True if the two objects are aligned, False otherwise
+\code{TRUE} if the two objects are aligned, \code{FALSE} otherwise
 }
 \description{
-`validate_alignment` checks that the two objects have the same
+`validate_alignment` checks that the objects have the same
 `shape` attribute and, if coordinate information is available, the
-same coordinate system given by the attributes `bounds`, `crs`
-and `transform`.
-}
-\note{
-`validatealignment` currently only handles arrays, matrices and FLOWobj.
+same coordinate system.
 }
 \examples{
 \dontrun{
-DEM <- terra::rast(matrix(1:25, 5, 5), crs="EPSG:25833")
+M <- matrix(1:25, 5, 5)
+DEM <- terra::rast(M, crs="EPSG:25833")
 FD <- FLOWobj(DEM)
-print(validatealignment(DEM, FD))
+print(validatealignment(M, DEM, FD))
 }
 
 }

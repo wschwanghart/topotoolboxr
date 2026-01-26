@@ -41,7 +41,7 @@ flow_accumulation <- function(FD,
   }
   
   # Input delineations
-  dims <- get_dims(FD)
+  dims <- dim_cr(FD)
   edge_count <- length(FD$source)
   
   # Compute flow routing using libtopotoolbox

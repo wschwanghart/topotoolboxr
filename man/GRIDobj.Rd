@@ -4,12 +4,12 @@
 \alias{GRIDobj}
 \title{Create instance of a GRIDobj}
 \usage{
-GRIDobj(x, ...)
+GRIDobj(z, ...)
 }
 \arguments{
-\item{x}{character | SpatRaster | matrix | array | GRIDobj | FLOWobj
+\item{z}{character | SpatRaster | matrix | array | GRIDobj | FLOWobj | NULL
 
-character: Path to a .tif file to read as a GRIDobj
+character: Path to a file containing a raster to read as a GRIDobj
 
 SpatRaster: A SpatRaster object from terra to transform into a GRIDobj
 
@@ -18,66 +18,78 @@ matrix | array: A numeric or logical matrix to transform into a GRIDobj
 GRIDobj | FLOWobj: A TTobj for which to copy common properties into a GRIDobj}
 
 \item{\dots}{Further arguments, either:
-cellsize: float or integer scalar representing the cellsize of the grid for GRIDobj(Z, cs)
+
+crs: character string describing a coordinate reference system for
+GRIDobj(Z, cs, crs) and GRIDobj(Z, x, y, crs)
+
+cs: float or integer scalar representing the cellsize of the grid for
+GRIDobj(Z, cs)
 
 x: integer or float vector representing x coordinates for GRIDobj(Z, x, y)
 
-y: integer or float vector representing y coordinates for GRIDobj(Z, x, y)}
+y: integer or float vector representing y coordinates for GRIDobj(Z, x, y)
+
+vec: integer or float or logical vector to set GRIDobj values to for
+GRIDobj(GRIDobj, vec)}
 }
 \value{
 GRIDobj
-Returns a GRIDobj containing the SpatRaster object and the file path.
+
+Returns a GRIDobj containing the SpatRaster object.
 }
 \description{
-GRIDobj creates an instance of the grid class, which basically builds on 
+GRIDobj creates an instance of the GRIDobj class, which basically builds on
 the \code{SpatRaster} structure.
 
-
-Coordinate reference systems must be provided in PROJ-string nomenclature. 
-See the official PROJ website for further information, examples and an 
+Coordinate reference systems must be provided in PROJ-string nomenclature.
+See the official PROJ website for further information, examples and an
 introduction: https://proj.org/en/stable/usage/quickstart.html.
 
-The function will stop if the resolution of the imported data set in x 
-and y direction is not identical. In that case, consider manual import of 
-the data set via \code{terra::rast()} and resampling to identical  
+The function will stop if the resolution of the imported data set in x
+and y direction is not identical. In that case, consider manual import of
+the data set via \code{terra::rast()} and resampling to identical
 resolution (cf. \code{terra::resample()}).
 
-DEM = GRIDobj(Z) creates a GRIDobj of a numeric matrix \code{Z} and a 
+DEM = GRIDobj("path/to/file") creates a GRIDobj by reading the file
+leveraging the \code{terra::rast()} function.
+
+DEM = GRIDobj(SpatRaster) creates a GRIDobj from a provided SpatRaster
+object.
+
+DEM = GRIDobj(Z) creates a GRIDobj of a numeric matrix \code{Z} and a
 default resolution of \code{1} m.
 
-DEM = GRIDobj(Z, cellsize) creates a GRIDobj from the elevations stored in 
-the matrix Z and \code{cellsize} is a positive value defining the spatial 
-resolution. 
+DEM = GRIDobj(Z, cs) creates a GRIDobj from the elevations stored in
+the matrix \code{Z} and \code{cellsize} is a positive value defining the
+spatial resolution.
 
-DEM = GRIDobj(Z, cellsize, crs) creates a GRIDobj from the elevations stored
-in the matrix Z, \code{cellsize} is a positive value defining the spatial 
-resolution and \code{crs} is a character defining the coordinate reference
-system.
+DEM = GRIDobj(Z, cs, crs) is similar to GRIDobj(Z, cs) but it
+sets the coordinate reference system.
 
 DEM = GRIDobj(Z, x, y) creates a GRIDobj from the coordinate matrices
 or vectors X and Y and the matrix Z. The elements of Z refer to the
 elevation of each pixel.
 
-DEM = GRIDobj("path/to/file") creates a GRIDobj by reading the file
-leveraging the \code{terra::rast()} function.
-
-DEM = GRIDobj(NULL) creates an empty instance of GRIDobj. The Matlab 
-equivalent is \code{GRIDobj([])}.
+DEM = GRIDobj(Z, x, y, crs) is similar to GRIDobj(Z, x, y) but it sets
+a coordinate reference system.
 
 DEM = GRIDobj(GRIDobj or FLOWobj or STREAMobj, class) creates an
 instance of GRIDobj with all common properties (e.g., spatial
-referencing) inherited from another instance of a FLOWobj, GRIDobj 
-or STREAMobj class. DEM.Z is set to all zeros where class can be
-integer classes or double or single. By default, class is double.
+referencing) inherited from another instance of a FLOWobj, GRIDobj
+or STREAMobj class. DEM.Z is set to all zeros where type can be
+integer or double or logical. By default, class is double.
 
 DEM = GRIDobj(GRIDobj or FLOWobj or STREAMobj, Z) creates an
 instance of GRIDobj with all common properties (e.g., spatial
-referencing) inherited from another instance of a FLOWobj, GRIDobj 
+referencing) inherited from another instance of a FLOWobj, GRIDobj
 or STREAMobj class. The second input argument Z is written to DEM.Z.
+
+DEM = GRIDobj(NULL) creates an empty instance of GRIDobj. The MATLAB
+equivalent is \code{GRIDobj([])}.
 }
 \note{
 Note that while throughout this help text GRIDobj is associated with
 gridded digital elevation models, instances of GRIDobj can contain
-other gridded, single band, datasets such as flow accumulation grids, 
+other gridded, single band, datasets such as flow accumulation grids,
 gradient grids etc.
 }

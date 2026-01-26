@@ -4,15 +4,67 @@
 \alias{plot.GRIDobj}
 \title{Plot a GRIDobj}
 \usage{
-\method{plot}{GRIDobj}(x, ...)
+\method{plot}{GRIDobj}(x, interactive = FALSE, ...)
 }
 \arguments{
-\item{x}{GRIDobj}
+\item{x}{\code{GRIDobj} to plot}
 
-\item{...}{Further arguments
+\item{interactive}{\code{Logical} value, option to create an interactive
+plot via \code{plotly} instead of a static map. Default is \code{FALSE}.
+The option is only useful if the dataset is a DEM, hence the z-values
+are elevation.}
 
-See also \link[graphics]{plot}}
+\item{\dots}{Further arguments passed to the plot function. These can be
+keywords for the colour palette (e.g. \code{col = "inferno"}) and number of
+colours (e.g. \code{n = 10}). The default colour palette is 256 colours
+from \code{"terrain"}. See details.}
+}
+\value{
+Graphic output of a spectrogram.
 }
 \description{
-`plot.GRIDobj` plots the values of a GRIDobj.
+The function plots a GRIDobj. The data structure is converted to a terra
+SpatRaster object and then passed to the standard terra plot routine.
+}
+\details{
+For the interactive case, the following additional arguments may be useful:
+
+1) \code{agg}, aggregation factor to reduce the resolution of the GRIDobj
+   to plot, e.g. use \code{agg = 10} to reduce the size by factor 10
+
+2) \code{exa}, exaggeration factor for the elevation, which is useful to
+   improve visibility of topography. Default is \code{1} (no exaggeration).
+
+Available colourspace keywords can be seen on the [HCL palettes website]
+(https://colorspace.r-forge.r-project.org/articles/hcl_palettes.html)
+, such as \code{"blues3"}, \code{"BuGn"}, \code{"Viridis"},
+\code{"Plasma"}, \code{"Batlow"}.
+}
+\examples{
+
+\dontrun{
+
+## load example data set
+data(srtm_bigtujunga30m_utm11)
+srtm_bigtujunga30m_utm11 <- GRIDobj(srtm_bigtujunga30m_utm11)
+
+## plot data set as2D map
+plot.GRIDobj(GRIDobj = srtm_bigtujunga30m_utm11)
+
+## plot data set as 3D interactive scene (requires package plotly), note
+## that the scence is aggregated by factor 10 and exaggerated by factor 2
+# plot.GRIDobj(x = srtm_bigtujunga30m_utm11,
+#              interactive = TRUE, agg = 10, exa = 2)
+
+## plot data set in customised colour
+plot.GRIDobj(x = srtm_bigtujunga30m_utm11, col = "viridis")
+
+## plot data set without legend
+plot.GRIDobj(x = srtm_bigtujunga30m_utm11, legend = FALSE)
+
+}
+
+}
+\author{
+Michael Dietze, Wolfgang Schwanghart
 }

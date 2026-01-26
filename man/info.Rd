@@ -4,10 +4,18 @@
 \alias{info}
 \title{Print key variables and statistics of the GRIDobj}
 \usage{
-info(x)
+info(grid, na.rm = FALSE, show_crs = FALSE)
 }
 \arguments{
-\item{x}{GRIDobj}
+\item{grid}{GRIDobj}
+
+\item{na.rm}{logical
+
+If TRUE \code{NA} values are removed before the result is computed}
+
+\item{show_crs}{logical
+
+If TRUE the coordinate reference system is displayed as well.}
 }
 \description{
 `info` retrieves metadata of the GRIDobj and computes key statistics, e.g.
