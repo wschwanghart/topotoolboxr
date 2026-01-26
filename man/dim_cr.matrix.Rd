@@ -18,4 +18,3 @@ Dimensions of the matrix
 `dim_cr.matrix` retrieves the dimensions of a matrix in the correct
 order for libtopotoolbox.
 }
-\keyword{internal}

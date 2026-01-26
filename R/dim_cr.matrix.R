@@ -8,7 +8,6 @@
 #' @return numeric vetor
 #'
 #' Dimensions of the matrix
-#' @keywords internal
 dim_cr.matrix <- function(x) {
 	c(ncol(x), nrow(x))
 }
