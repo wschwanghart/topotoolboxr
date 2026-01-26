@@ -1,49 +1,53 @@
-#' Check whether two objects are aligned
-#' 
+#' Check whether multiple objects are aligned
+#'
 #' @description
-#' `validate_alignment` checks that the two objects have the same
+#' `validate_alignment` checks that the objects have the same
 #' `shape` attribute and, if coordinate information is available, the
-#' same coordinate system given by the attributes `bounds`, `crs`
-#' and `transform`.
-#' 
-#' @param x1 matrix or array or GRIDobj or FLOWobj or STREAMobj
-#' 
-#' The first object to check
-#' 
-#' @param x2 matrix or array or GRIDobj or FLOWobj or STREAMobj
-#' 
-#' The second object to check
-#' 
+#' same coordinate system.
+#'
+#' @param ... matrix | array | GRIDobj | FLOWobj | STREAMobj
+#'
+#' Objects to test for alignment
+#'
 #' @return logical
-#' 
-#' True if the two objects are aligned, False otherwise
-#' 
+#'
+#' \code{TRUE} if the two objects are aligned, \code{FALSE} otherwise
+#'
 #' @examples
 #' \dontrun{
-#' DEM <- terra::rast(matrix(1:25, 5, 5), crs="EPSG:25833")
+#' M <- matrix(1:25, 5, 5)
+#' DEM <- terra::rast(M, crs="EPSG:25833")
 #' FD <- FLOWobj(DEM)
-#' print(validatealignment(DEM, FD))
+#' print(validatealignment(M, DEM, FD))
 #' }
-#' 
-#' @note
-#' `validatealignment` currently only handles arrays, matrices and FLOWobj.
-#' 
-#' @import terra
-#' 
+#'
 #' @export
-
-validatealignment <- function(x1, x2) {
-  # Check whether x1 and x2 contains a SpatRaster and get position in object
-  idx_r1 <- which(sapply(x1, inherits, "SpatRaster"))[1]
-  idx_r2 <- which(sapply(x2, inherits, "SpatRaster"))[1]
-
-  if (!is.na(idx_r1) & !is.na(idx_r2)){
-    # If both objects contain SpatRasters: validate with terra::compareGeom()
-    check <- terra::compareGeom(x1[[idx_r1]],
-                                x2[[idx_r2]])
+validatealignment <- function(...) {
+  args <- list(...)
+  log_gri <- sapply(args, inherits, "GRIDobj")
+  log_ras <- sapply(args, inherits, "SpatRaster")
+  if (any(log_gri)) {
+    idx_crs <- which(log_gri)[1]
+    ini <- args[[idx_crs]]$raster
+  } else if (any(log_ras)) {
+    idx_crs <- which(log_ras)[1]
+    ini <- args[[idx_crs]]
   } else {
-    # Else: validate dimensions match
-    check <- all(get_dims(x1) == get_dims(x2))
+    idx_crs <- 1
+    ini <- args[[idx_crs]]
   }
-  return(check)
+
+  args <- args[-idx_crs]
+  check <- logical(length(args))
+
+  for (idx in seq_along(args)) {
+    if (inherits(args[[idx]], "GRIDobj")) {
+      check[idx] <- terra::compareGeom(ini, args[[idx]]$raster)
+    } else if (inherits(args[[idx]], "SpatRaster")) {
+      check[idx] <- terra::compareGeom(ini, args[[idx]])
+    } else {
+      check[idx] <- all(dim_cr(ini) == dim_cr(args[[idx]]))
+    }
+  }
+  all(check)
 }

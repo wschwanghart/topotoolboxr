@@ -2,20 +2,23 @@
 % Please edit documentation in R/get_grid_data.R
 \name{get_grid_data}
 \alias{get_grid_data}
-\title{Takes a Spatrast and gives back a list with the values of the Spatrast, its cellsize and dimensions}
+\title{Get grid data}
 \usage{
-get_grid_data(r)
+get_grid_data(DEM)
 }
 \arguments{
-\item{r}{Takes a Spatrast}
+\item{DEM}{GRIDobj | SpatRaster
+
+Object for which to retrieve grid data}
 }
 \value{
-A list with components `z`, a vector 
-containing the grid data in row-major order, 
-`cellsize`, the horizontal resolution of the grid, 
-and `dims` a two-element vector with the number 
-of columns and rows of the grid.
+list
+
+A list with the components `z`, a vector containing the grid data in
+row-major order, `cellsize`, the horizontal resolution of the grid, and
+`dims` a two-element vector with the number of columns and rows of the grid.
 }
 \description{
-Takes a Spatrast and gives back a list with the values of the Spatrast, its cellsize and dimensions
+`get_grid_data` retrieves the values, cellsize and dimension of a provided
+GRIDobj or SpatRaster.
 }

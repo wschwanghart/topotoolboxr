@@ -181,23 +181,21 @@ FLOWobj <- function(DEM,
 }
 
 #' FLOWobj dimensions
-#' 
+#'
 #' @description
-#' `get_dims.FLOWobj` computes the  dimensions of the underlying grid of the
+#' `dim_cr.FLOWobj` computes the  dimensions of the underlying grid of the
 #' FLOWobj in the correct order for libtopotoolbox.
-#' 
+#'
 #' @param x FLOWobj
-#' 
+#'
 #' FLOWobj for which to copmute the dimensions
-#' 
+#'
 #' @return numeric vector
-#' 
+#'
 #' Dimensions of the grid
-#' 
-#' @export
-get_dims.FLOWobj <- function(x){
+dim_cr.FLOWobj <- function(x){
   r <- x$raster
-  return(c(terra::ncol(r), terra::nrow(r)))
+  c(terra::ncol(r), terra::nrow(r))
 }
 
 #' Unravel indices
@@ -224,7 +222,7 @@ unravel_index.FLOWobj <- function(TTobj, idxs) {
   if (!(is.vector(idxs) || is.matrix(idxs) || (is.array(idxs) && length(dim(idxs)) == 1))) {
     stop("Input 'idxs' must be a one-dimensional vector, a matrix, or an array.")
   }
-  dims <- get_dims(TTobj)
+  dims <- dim_cr(TTobj)
   
   # Calculate the strides for each dimension (row-major)
   strides <- c(1, cumprod(dims[-length(dims)]))

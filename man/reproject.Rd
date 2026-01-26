@@ -4,19 +4,19 @@
 \alias{reproject}
 \title{Change the projection}
 \usage{
-reproject(x, y, ...)
+reproject(grid, target, ...)
 }
 \arguments{
-\item{x}{GRIDobj}
+\item{grid}{GRIDobj}
 
-\item{y}{character | GRIDobj}
+\item{target}{character | GRIDobj | SpatRaster}
 
-\item{...}{Further arguments}
+\item{...}{Further arguments
+
+See \link[terra]{project}}
 }
 \value{
-GRIDobj `x` with projeciton from `y`
-
-See also \link[terra]{project}
+GRIDobj `x` with projection from `y`
 }
 \description{
 `reproject` changes the projection of a GRIDobj.
