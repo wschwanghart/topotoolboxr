@@ -1,9 +1,9 @@
-#' Compute accumulation of flow
+#' Compute flow accumulation (upslope area)
 #'
 #' @description
-#' Computes the flow accumulation for a given flow network using optional
-#' weights. The flow accumulation represents the amount of flow each cell
-#' receives from its upstream neighbors.
+#' Computes the flow accumulation for a given flow network stored as FLOWobj
+#' using optional weights. The flow accumulation represents the amount of
+#' flow each cell receives from its upstream neighbors.
 #'
 #' @param fd FLOWobj
 #'

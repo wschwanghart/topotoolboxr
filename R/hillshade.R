@@ -1,6 +1,6 @@
-#' Hillshade
+#' hillshade
 #'
-#' Compute a hillshade of the supplied digital elevation model
+#' Compute a hillshade of a digital elevation model
 #'
 #' @param dem GRIDobj | SpatRaster (terra); Digital elevation model
 #' @param azimuth float; The azimuth angle of the light source measured in
@@ -21,6 +21,7 @@
 #' data(srtm_bigtujunga30m_utm11)
 #' DEM <- GRIDobj(srtm_bigtujunga30m_utm11)
 #' HS <- hillshade(DEM)
+#' plot(HS, col = "Grays")
 #'
 #' @export
 

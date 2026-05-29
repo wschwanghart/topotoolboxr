@@ -1,6 +1,6 @@
 #' fillsinks
 #'
-#'@description Fill sinks in the digital elevation model (DEM).
+#'@description Fill sinks (depressions) in the digital elevation model (DEM)
 #'
 #' @param dem GRIDobj | SpatRaster
 #'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/hillshade.R
 \name{hillshade}
 \alias{hillshade}
-\title{Hillshade}
+\title{hillshade}
 \usage{
 hillshade(dem, azimuth = 315, altitude = 60, exaggerate = 1, fused = TRUE)
 }
@@ -27,12 +27,13 @@ FALSE for increased performance. Defaults to TRUE.}
 GRIDobj | SpatRaster (terra); Hillshade
 }
 \description{
-Compute a hillshade of the supplied digital elevation model
+Compute a hillshade of a digital elevation model
 }
 \examples{
 
 data(srtm_bigtujunga30m_utm11)
 DEM <- GRIDobj(srtm_bigtujunga30m_utm11)
 HS <- hillshade(DEM)
+plot(HS, col = "Grays")
 
 }

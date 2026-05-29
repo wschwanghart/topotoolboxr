@@ -325,6 +325,7 @@ Ops.GRIDobj <- function(e1, e2) {
 #' @return numeric vector
 #'
 #' Dimensions of the GRIDobj
+#' @export
 dim.GRIDobj <- function(x) {
   dim(x$raster)
 }
@@ -339,6 +340,8 @@ dim.GRIDobj <- function(x) {
 #' @return numeric vector
 #'
 #' Dimensions of the GRIDobj
+#' 
+#' @export
 dim_cr.GRIDobj <- function(x) {
   c(terra::ncol(x$raster), terra::nrow(x$raster))
 }
