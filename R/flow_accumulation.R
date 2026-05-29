@@ -42,16 +42,14 @@ flow_accumulation <- function(fd,
   edge_count <- length(fd$source)
 
   # Compute flow routing using libtopotoolbox
-  output <- single(prod(dims))
+  output <- as.single(ezgetnal(fd, weights))
   result <- .C(
-    "wrap_flow_accumulation_edgelist",
-    accR = as.single(output), # float
+    "wrap_traverse_down_f32_add_mul",
+    accR = output, # float
+    fractionR = as.single(rep(1, edge_count)), # float
     sourceR = as.integer(fd$source), # ptrdiff_t
     targetR = as.integer(fd$target), # ptrdiff_t
-    fractionR = as.single(rep(1, edge_count)), # float
-    weightsR = as.single(ezgetnal(fd, weights)), # float
     edge_countR = as.integer(edge_count), # ptrdiff_t
-    dimsR = as.integer(dims), # ptrdiff_t
     NAOK = TRUE
   )$accR
 
