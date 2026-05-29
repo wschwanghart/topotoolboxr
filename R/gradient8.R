@@ -31,7 +31,7 @@
 #'
 #' data(srtm_bigtujunga30m_utm11)
 #' DEM <- GRIDobj(srtm_bigtujunga30m_utm11)
-#' g <- gradient8(DEM)
+#' G <- gradient8(DEM)
 #' plot(G, range = c(0, 1))
 #'
 #' @export
