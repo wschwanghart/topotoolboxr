@@ -2,7 +2,7 @@
 % Please edit documentation in R/flow_accumulation.R
 \name{flow_accumulation}
 \alias{flow_accumulation}
-\title{Compute accumulation of flow}
+\title{Compute flow accumulation (upslope area)}
 \usage{
 flow_accumulation(fd, weights = 1)
 }
@@ -25,9 +25,9 @@ GRIDobj
 A new GRIDobj containing the flow accumulation grid.
 }
 \description{
-Computes the flow accumulation for a given flow network using optional
-weights. The flow accumulation represents the amount of flow each cell
-receives from its upstream neighbors.
+Computes the flow accumulation for a given flow network stored as FLOWobj
+using optional weights. The flow accumulation represents the amount of
+flow each cell receives from its upstream neighbors.
 }
 \examples{
 

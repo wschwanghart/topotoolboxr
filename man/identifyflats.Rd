@@ -2,7 +2,7 @@
 % Please edit documentation in R/identifyflats.R
 \name{identifyflats}
 \alias{identifyflats}
-\title{wrap_identifyflats}
+\title{identifyflats}
 \usage{
 identifyflats(dem)
 }
@@ -17,6 +17,19 @@ GRIDobj | SpatRaster
 Grid of identified flats, sills and presills
 }
 \description{
-This will make the identifyflats function available to R from the
-libtotopotoolbox subdirectory.
+This function identifies flat pixels in a digital elevation model. 
+A flat pixel is one surrounded by pixels with the same or higher 
+elevations and has the value 1 in the output grid. In addition, 
+the function identifies also sill (value = 2) and presill pixels 
+(value = 5). presill pixels are located next to sill pixels and
+have the same elevation. The function uses libtopotoolbox.
+}
+\examples{
+
+data(srtm_bigtujunga30m_utm11)
+DEM <- GRIDobj(srtm_bigtujunga30m_utm11)
+DEMf <- fillsinks(DEM)
+I <- identifyflats(DEMf)
+plot(I)
+
 }

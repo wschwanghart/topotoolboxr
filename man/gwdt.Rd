@@ -2,7 +2,7 @@
 % Please edit documentation in R/gwdt.R
 \name{gwdt}
 \alias{gwdt}
-\title{wrap_gwdt}
+\title{gwdt}
 \usage{
 gwdt(dem)
 }
@@ -17,5 +17,12 @@ GRIDobj | SpatRaster
 GWDT distances for each grid cell.
 }
 \description{
-Perform the grey-weighted distance transform (GWDT) on the DEM.
+Perform the grey-weighted distance transform (GWDT) on the DEM. The function
+is for internal use and calculates the auxiliary topography in topographic
+sinks and flats that is required to derive flow directions.
+}
+\details{
+gwdt fills topographic sinks, identifies flat areas and sill pixels, and
+then calculates the gray-weighted distance transform on flat areas seeded
+at sill pixels.
 }

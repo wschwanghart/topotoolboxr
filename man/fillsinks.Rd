@@ -29,7 +29,7 @@ GRIDobj | SpatRaster
 Filled digital elevation model
 }
 \description{
-Fill sinks in the digital elevation model (DEM).
+Fill sinks (depressions) in the digital elevation model (DEM)
 }
 \examples{
 

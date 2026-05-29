@@ -13,7 +13,7 @@ The GRIDobj that will be the basis of the computation.}
 
 \item{bc}{numeric array or matrix, optional
 
-Boundary conditions for sink filling. `bc` should match the shape of the DEM.
+Boundary conditions for sink filling. `bc` must match the size of the DEM.
 Values of 1 indicate pixels that should be fixed to their values in the
 original DEM and values of 0 indicate pixels that should be filled.}
 
@@ -31,8 +31,9 @@ an empty SpatRaster storing the spatial information of the original DEM.
 }
 \description{
 `FLOWobj`is the constructor for the FLOWobj. It takes a GRIDobj from
-topotoolboxr or a SpatRaster from terra as input, computes flow direction
-information and saves them as an FLOWobj.
+topotoolboxr or a SpatRaster from terra as input, computes flow directions
+and returns them as a FLOWobj. A FLOWobj stores flow directions as a
+topologically sorted edge list.
 }
 \details{
 Large intermediate arrays are created during the initialization process,

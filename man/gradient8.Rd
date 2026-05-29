@@ -2,7 +2,7 @@
 % Please edit documentation in R/gradient8.R
 \name{gradient8}
 \alias{gradient8}
-\title{wrap_gradient8}
+\title{gradient8}
 \usage{
 gradient8(dem, unit = "tangent", use_mp = 0)
 }
@@ -33,14 +33,14 @@ Currently not implemented.}
 }
 \description{
 Computes the gradient of a digital elevation model (DEM) using an 8-direction
-algorithm, making the Gradient8 function available to R from the
-libtotopotoolbox subdirectory.
+algorithm. The algorithm returns the maximum downward gradient and has 
+positive values only.
 }
 \examples{
 
 data(srtm_bigtujunga30m_utm11)
 DEM <- GRIDobj(srtm_bigtujunga30m_utm11)
 g <- gradient8(DEM)
-plot(g)
+plot(G, range = c(0, 1))
 
 }

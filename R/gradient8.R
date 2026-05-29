@@ -1,8 +1,8 @@
-#' wrap_gradient8
+#' gradient8
 #'
 #' Computes the gradient of a digital elevation model (DEM) using an 8-direction
-#' algorithm, making the Gradient8 function available to R from the
-#' libtotopotoolbox subdirectory.
+#' algorithm. The algorithm returns the maximum downward gradient and has 
+#' positive values only. 
 #'
 #' @param dem GRIDobj | SpatRaster
 #'
@@ -32,7 +32,7 @@
 #' data(srtm_bigtujunga30m_utm11)
 #' DEM <- GRIDobj(srtm_bigtujunga30m_utm11)
 #' g <- gradient8(DEM)
-#' plot(g)
+#' plot(G, range = c(0, 1))
 #'
 #' @export
 

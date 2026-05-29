@@ -13,8 +13,8 @@ Description: Topotoolboxr provides an R interface to TopoToolbox, a set of tools
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/TopoToolbox/topotoolboxr, https://github.com/TopoToolbox
-RoxygenNote: 7.3.3
 Suggests: 
     testthat (>= 3.1.5),
     plotly
 Config/testthat/edition: 3
+Config/roxygen2/version: 8.0.0

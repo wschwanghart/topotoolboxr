@@ -1,6 +1,12 @@
-#' wrap_gwdt
+#' gwdt
 #'
-#' Perform the grey-weighted distance transform (GWDT) on the DEM.
+#' Perform the grey-weighted distance transform (GWDT) on the DEM. The function
+#' is for internal use and calculates the auxiliary topography in topographic
+#' sinks and flats that is required to derive flow directions. 
+#' 
+#' gwdt fills topographic sinks, identifies flat areas and sill pixels, and
+#' then calculates the gray-weighted distance transform on flat areas seeded
+#' at sill pixels.
 #'
 #' @param dem GRIDobj | SpatRaster
 #'

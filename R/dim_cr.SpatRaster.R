@@ -8,6 +8,8 @@
 #' @return integer vector
 #'
 #' Dimensions of the SpatRaster
+#' 
+#' @export
 dim_cr.SpatRaster <- function(x) {
   c(terra::ncol(x), terra::nrow(x))
 }
