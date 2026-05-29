@@ -3,7 +3,7 @@
 `topotoolboxr` is an R-package for the analysis of
 digital elevation models (DEMs). It is intended to
 provide similar functionalities as the MATLAB version
-(TopoToolbox 3)[http://github.com/TopoToolbox/topotoolbox3] and the Python version (pytopotoolbox)[http://github.com/TopoToolbox/pytopotoolbox].
+[TopoToolbox 3](http://github.com/TopoToolbox/topotoolbox3) and the Python version [pytopotoolbox](http://github.com/TopoToolbox/pytopotoolbox).
 
 # Install as user
 
